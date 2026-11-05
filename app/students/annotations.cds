@@ -1,0 +1,1 @@
+using GameService as service from '../../srv/game-service';
