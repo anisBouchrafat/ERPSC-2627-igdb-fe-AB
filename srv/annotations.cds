@@ -49,7 +49,7 @@ annotate service.Student with @(
 
 annotate service.FavoriteGame with @(UI.LineItem: [
     {
-        Value: to_game.Name,
+        Value: Game_ID,
         Label: 'Game'
     },
     {
@@ -61,3 +61,35 @@ annotate service.FavoriteGame with @(UI.LineItem: [
         Label: 'Platform'
     }
 ]);
+
+annotate service.FavoriteGame with {
+    Game_ID @(
+        Common.Label                   : 'Game',
+        Common.Text                    : to_game.Name,
+        Common.TextArrangement         : #TextOnly,
+        Common.ValueListWithFixedValues: true,
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'Game',
+            Parameters    : [
+                {
+                    $Type            : 'Common.ValueListParameterInOut',
+                    LocalDataProperty: Game_ID,
+                    ValueListProperty: 'Game_ID'
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'Name'
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'Genre'
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'Platform'
+                }
+            ]
+        }
+    );
+};
